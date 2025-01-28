@@ -18,7 +18,7 @@ It's a personal Kanban board using jwt login credentials
 
 ## Installation
 
-* This app can be run in a modern browser at the following [URL](https://).
+* This app can be run in a modern browser at the following [URL](https://kanban-kuredentials.onrender.com).
 
 
 
@@ -27,7 +27,6 @@ It's a personal Kanban board using jwt login credentials
 ## Usage
 
 It's a Kanban board
-<iframe title="vimeo-player" src="https://player.vimeo.com/video/1035076639?h=01f084c303" width="640" height="360" frameborder="0" allowfullscreen></iframe>
 
 
 
@@ -54,7 +53,7 @@ For those interested, here are ways that you can contribute to the project:
 
 ## Credits
 
-Starter code by edX Bootcamps, see this commit for details.
+Starter code by edX Bootcamps, see this [commit]() for details.
 
 
 
