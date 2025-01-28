@@ -53,7 +53,7 @@ For those interested, here are ways that you can contribute to the project:
 
 ## Credits
 
-Starter code by edX Bootcamps, see this [commit]() for details.
+Starter code by edX Bootcamps, see this [commit](https://github.com/ArtOfTheNiles/Kanban-Kuredentials/commit/f89ded04149d29a1b96d1bf59461e4da9676a840) for details.
 
 
 
