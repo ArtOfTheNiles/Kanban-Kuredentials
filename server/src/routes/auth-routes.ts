@@ -18,7 +18,12 @@ export const login = async (req: Request, res: Response) => {
     return res.status(401).json({ message: 'Login failed, please try again!' });
   }
 
-  const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET_KEY ? process.env.JWT_SECRET_KEY : '', { expiresIn: '1h' });
+  const secret = process.env.JWT_SECRET_KEY;
+  if (!secret) {
+    throw new Error('SECRET_KEY not defined');
+  }
+
+  const token = jwt.sign({ username: user.username }, secret, { expiresIn: '1h' });
   return res.json({ token });
 };
 
