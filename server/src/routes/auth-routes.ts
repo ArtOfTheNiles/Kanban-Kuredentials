@@ -20,7 +20,7 @@ export const login = async (req: Request, res: Response) => {
 
   const secret = process.env.JWT_SECRET_KEY;
   if (!secret) {
-    throw new Error('SECRET_KEY not defined');
+    throw new Error('JWT_SECRET_KEY not defined');
   }
 
   const token = jwt.sign({ username: user.username }, secret, { expiresIn: '1h' });

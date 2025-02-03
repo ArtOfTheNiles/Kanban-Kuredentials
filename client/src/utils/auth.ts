@@ -1,5 +1,7 @@
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 
+
+
 class AuthService {
   storageKey = 'auth_token';
   getProfile() {
@@ -45,7 +47,7 @@ class AuthService {
   logout() {
     localStorage.removeItem(this.storageKey);
     // redirect to the login page
-    window.location.assign('/login');
+    window.location.assign('localhost:3001/login');
   }
 }
 
