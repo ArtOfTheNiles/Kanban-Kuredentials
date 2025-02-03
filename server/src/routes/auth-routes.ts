@@ -7,15 +7,16 @@ dotenv.config();
 
 export const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;
-  
+  const loginErrorMessage = 'Login failed, please try again!';
+
   const user = await User.findOne({ where: { username } });
   if (!user) {
-    return res.status(401).json({ message: 'Login failed, please try again!' });
+    return res.status(401).json({ message: loginErrorMessage });
   }
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
   if (!isPasswordValid) {
-    return res.status(401).json({ message: 'Login failed, please try again!' });
+    return res.status(402).json({ message: loginErrorMessage });
   }
 
   const secret = process.env.JWT_SECRET_KEY;
