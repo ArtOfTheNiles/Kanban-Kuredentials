@@ -12,11 +12,24 @@ class AuthService {
   }
 
   loggedIn(): boolean {
-    // TODO: return a value that indicates if the user is logged in
+    const token = this.getToken();
+    if (!token || this.isTokenExpired(token)) {
+      return false;
+    }else{
+      return true;
+    }
   }
   
   isTokenExpired(token: string): boolean {
-    // TODO: return a value that indicates if the token is expired
+    try {
+      const decoded = jwtDecode<JwtPayload>(token);
+      if(decoded.exp){
+        return decoded.exp < (Date.now() / 1000);
+      }
+      return true;
+    } catch (error) {
+      return true;
+    }
   }
 
   getToken(): string {
