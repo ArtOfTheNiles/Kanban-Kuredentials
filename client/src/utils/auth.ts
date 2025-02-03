@@ -1,30 +1,53 @@
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 
+
+
 class AuthService {
+  storageKey = 'auth_token';
   getProfile() {
-    // TODO: return the decoded token
+    const token = this.getToken();
+    if (!token) {
+      return null;
+    }else{
+      return jwtDecode<JwtPayload>(token);
+    }
   }
 
-  loggedIn() {
-    // TODO: return a value that indicates if the user is logged in
+  loggedIn(): boolean {
+    const token = this.getToken();
+    if (!token || this.isTokenExpired(token)) {
+      return false;
+    }else{
+      return true;
+    }
   }
   
-  isTokenExpired(token: string) {
-    // TODO: return a value that indicates if the token is expired
+  isTokenExpired(token: string): boolean {
+    try {
+      const decoded = jwtDecode<JwtPayload>(token);
+      if(decoded.exp){
+        return decoded.exp < (Date.now() / 1000);
+      }
+      return true;
+    } catch (error) {
+      return true;
+    }
   }
 
   getToken(): string {
-    // TODO: return the token
+    return localStorage.getItem(this.storageKey) || '';
   }
 
   login(idToken: string) {
-    // TODO: set the token to localStorage
-    // TODO: redirect to the home page
+    localStorage.setItem(this.storageKey, idToken);
+    // redirect to the home page
+    window.location.assign('/');
   }
 
   logout() {
-    // TODO: remove the token from localStorage
-    // TODO: redirect to the login page
+    localStorage.removeItem(this.storageKey);
+    // redirect to the login page
+    window.location.assign('localhost:3001/login');
   }
 }
 
